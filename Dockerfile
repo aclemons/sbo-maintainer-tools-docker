@@ -43,6 +43,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     desktop-file-utils \
     git \
     glibc \
+    parallel \
     perl \
     sudo \
     && rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/*
