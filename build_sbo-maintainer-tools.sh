@@ -29,7 +29,7 @@ export TERSE=0
 slackpkg -default_answer=yes -batch=on update
 
 EXIT_CODE=0
-slackpkg -default_answer=yes -batch=on install dcron perl ca-certificates make guile gc || EXIT_CODE=$?
+slackpkg -default_answer=yes -batch=on install dcron perl ca-certificates make guile gc
 
 if [ $EXIT_CODE -ne 0 ] && [ $EXIT_CODE -ne 20 ] ; then
   exit $EXIT_CODE
@@ -51,6 +51,7 @@ export TAG=_aclemons
 
   # shellcheck disable=SC2086
   wget $DOWNLOAD
+  printf "%s\t%s\n" "$MD5SUM" "$(ls ./*tar*)" | md5sum --check --quiet
   PKGTYPE=txz sh sbo-maintainer-tools.SlackBuild
 )
 
