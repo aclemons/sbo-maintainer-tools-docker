@@ -40,9 +40,30 @@ FROM sbo-maintainer-tools-$TARGETARCH
 WORKDIR /mnt
 RUN slackpkg -default_answer=yes -batch=on update && \
     slackpkg -default_answer=yes -batch=on install \
+    brotli \
     desktop-file-utils \
+    fftw \
+    fontconfig \
+    freetype \
     git \
     glibc \
+    gnutls \
+    graphite2 \
+    harfbuzz \
+    imagemagick \
+    lcms2 \
+    libICE \
+    libSM \
+    libX11 \
+    libXau \
+    libXdmcp \
+    libXext \
+    libXt \
+    libxcb \
+    libxml2 \
+    libzip \
+    nettle \
+    p11-kit \
     parallel \
     perl \
     sudo \
