@@ -11,6 +11,7 @@ COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
 FROM ghcr.io/aclemons/slackware:current as build-sbo-maintainer-tools-arm64
+RUN touch /var/lib/slackpkg/current
 COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
@@ -31,7 +32,7 @@ RUN installpkg /tmp/*.txz && rm -rf /tmp/*.txz
 
 FROM ghcr.io/aclemons/slackware:current as sbo-maintainer-tools-arm64
 # hadolint ignore=DL3006
-COPY --from=build-sbo-maintainer-tools-arm /tmp/* /tmp
+COPY --from=build-sbo-maintainer-tools-arm64 /tmp/* /tmp
 RUN installpkg /tmp/*.txz && rm -rf /tmp/*.txz
 
 ARG TARGETARCH=
