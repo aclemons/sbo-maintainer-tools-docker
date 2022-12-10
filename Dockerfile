@@ -39,6 +39,7 @@ ARG TARGETARCH=
 # hadolint ignore=DL3006
 FROM sbo-maintainer-tools-$TARGETARCH
 WORKDIR /mnt
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN slackpkg -default_answer=yes -batch=on update && \
     slackpkg -default_answer=yes -batch=on install \
     brotli \
@@ -68,4 +69,4 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     parallel \
     perl \
     sudo \
-    && rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/*
+    && rm -rf /var/cache/packages/* && find /var/lib/slackpkg/ -mindepth 1 \! -name current -print0 | xargs -0 rm -rf
