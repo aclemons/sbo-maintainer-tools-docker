@@ -35,13 +35,16 @@ FROM ghcr.io/aclemons/slackware:current as sbo-maintainer-tools-arm64
 COPY --from=build-sbo-maintainer-tools-arm64 /tmp/* /tmp
 RUN installpkg /tmp/*.txz && rm -rf /tmp/*.txz
 
-ARG TARGETARCH=
+ARG TARGETARCH
 # hadolint ignore=DL3006
 FROM sbo-maintainer-tools-$TARGETARCH
 WORKDIR /mnt
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ARG TARGETARCH
 RUN slackpkg -default_answer=yes -batch=on update && \
-    slackpkg -default_answer=yes -batch=on install \
+    archwrapper="" && \
+    if [ "$TARGETARCH" = "386" ] ; then archwrapper="linux32" ; fi && \
+    $archwrapper slackpkg -default_answer=yes -batch=on install \
     brotli \
     desktop-file-utils \
     fftw \
