@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.3-labs
+
 FROM ghcr.io/aclemons/slackware:15.0 as build-sbo-maintainer-tools-386
 COPY build_sbo-maintainer-tools.sh /
 RUN linux32 bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
@@ -73,3 +75,38 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     perl \
     sudo \
     && rm -rf /var/cache/packages/* && find /var/lib/slackpkg/ -mindepth 1 \! -name current -print0 | xargs -0 rm -rf
+
+# hadolint ignore=DL3003
+RUN <<EOF
+cd /usr/share/sbo-maintainer-tools/sbopkglint.d/ && cat << PATCH | patch -p2
+--- a/sbopkglint.d/20-arch.t.sh
++++ b/sbopkglint.d/20-arch.t.sh
+@@ -11,10 +11,14 @@
+ # ARCH, and that libs are in the correct directory (lib vs. lib64).
+ 
+ # warnings:
++# if an arm* package has any 64-bit ELF objects (libs or bins)
+ # if an i?86 package has any 64-bit ELF objects (libs or bins)
++# if an aarch package has any 32-bit ELF objects (libs or bins)
+ # if an x86_64 package has any 32-bit ELF objects (libs or bins)
++# if an arm* package has lib64 or usr/lib64 at all
+ # if an i?86 package has lib64 or usr/lib64 at all
+ # if an x86_64 package has 64-bit libs in lib or usr/lib
++# if an aarch64 package has 64-bit libs in lib or usr/lib
+ 
+ # note: sometimes files in /lib/firmware are ELF, and would cause
+ # false "wrong directory" warnings, so we exclude that dir from the
+@@ -23,8 +27,10 @@
+ case "$ARCH" in
+ 	noarch) ;; # ok, do nothing.
+ 	i?86) WRONGDIR="lib64"; CPU="80386" ;;
++	arm*) WRONGDIR="lib64"; CPU="ARM" ;;
+ 	x86_64) WRONGDIR="lib"; CPU="x86-64" ;;
+-	*) warn "ARCH isn't noarch, i?86, or x86_64. don't know how to check binaries." ;;
++	aarch64) WRONGDIR="lib"; CPU="aarch64" ;;
++	*) warn "ARCH isn't noarch, arm*, i?86, aarch64, or x86_64. don't know how to check binaries." ;;
+ esac
+ 
+ INWRONGDIR=""
+PATCH
+EOF
