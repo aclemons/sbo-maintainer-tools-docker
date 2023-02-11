@@ -79,6 +79,8 @@ RUN slackpkg -default_answer=yes -batch=on update && \
 # hadolint ignore=DL3003
 RUN <<EOF
 cd /usr/share/sbo-maintainer-tools/sbopkglint.d/ && cat << PATCH | patch -p2
+diff --git a/sbopkglint.d/20-arch.t.sh b/sbopkglint.d/20-arch.t.sh
+index 376074d..d43d1df 100644
 --- a/sbopkglint.d/20-arch.t.sh
 +++ b/sbopkglint.d/20-arch.t.sh
 @@ -11,10 +11,14 @@
