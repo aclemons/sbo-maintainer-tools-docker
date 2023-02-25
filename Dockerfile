@@ -11,7 +11,6 @@ COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
 FROM ghcr.io/aclemons/slackware:current as build-sbo-maintainer-tools-arm64
-RUN touch /var/lib/slackpkg/current
 COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
