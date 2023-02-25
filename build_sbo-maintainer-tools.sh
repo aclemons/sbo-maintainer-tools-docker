@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2022 Andrew Clemons, Tokyo Japan
+# Copyright 2022-2023 Andrew Clemons, Tokyo Japan
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -42,17 +42,18 @@ rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 wget -O - https://github.com/SlackBuildsOrg/slackbuilds/tarball/master | tar xz
 
 export TAG=_aclemons
+export VERSION=0.6.1
+export DOWNLOAD="https://slackware.uk/~urchlay/src/sbo-maintainer-tools-0.6.1.tar.gz"
+export MD5SUM=c3b3616f1ac6f395d5f9c9f575275277
+export PKGTYPE=txz
 (
   cd SlackBuildsOrg-slackbuilds-*
 
   cd system/sbo-maintainer-tools
-  # shellcheck disable=SC1091
-  . sbo-maintainer-tools.info
 
-  # shellcheck disable=SC2086
-  wget $DOWNLOAD
-  printf "%s\t%s\n" "$MD5SUM" "$(ls ./*tar*)" | md5sum --check --quiet
-  PKGTYPE=txz sh sbo-maintainer-tools.SlackBuild
+  wget "$DOWNLOAD"
+  printf "%s\t%s\n" "$MD5SUM" "$(basename "$DOWNLOAD")" | md5sum --check --quiet
+  PKGTYPE=txz bash sbo-maintainer-tools.SlackBuild
 )
 
 rm -rf SlackBuildsOrg-slackbuilds-*
