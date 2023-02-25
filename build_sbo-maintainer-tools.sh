@@ -42,9 +42,9 @@ rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 wget -O - https://github.com/SlackBuildsOrg/slackbuilds/tarball/master | tar xz
 
 export TAG=_aclemons
-export VERSION=0.6.1
-export DOWNLOAD="https://slackware.uk/~urchlay/src/sbo-maintainer-tools-0.6.1.tar.gz"
-export MD5SUM=c3b3616f1ac6f395d5f9c9f575275277
+export VERSION=0.6.2
+export DOWNLOAD=https://slackware.uk/~urchlay/src/sbo-maintainer-tools-0.6.2.tar.gz
+export MD5SUM=5baadb2ec307cc34cf2f0259a0e19341
 export PKGTYPE=txz
 (
   cd SlackBuildsOrg-slackbuilds-*
