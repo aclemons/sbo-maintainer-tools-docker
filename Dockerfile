@@ -45,6 +45,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     if [ "$TARGETARCH" = "386" ] ; then archwrapper="linux32" ; fi && \
     $archwrapper slackpkg -default_answer=yes -batch=on install \
     brotli \
+    cyrus-sasl \
     desktop-file-utils \
     fftw \
     fontconfig \
@@ -63,12 +64,18 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     libXdmcp \
     libXext \
     libXt \
+    libwep \
     libxcb \
     libxml2 \
     libzip \
+    mozilla-nss \
     nettle \
+    nghttp2 \
+    openjpeg \
     p11-kit \
     parallel \
     perl \
+    popper-data \
+    poppler \
     sudo \
     && rm -rf /var/cache/packages/* && find /var/lib/slackpkg/ -mindepth 1 \! -name current -print0 | xargs -0 rm -rf
