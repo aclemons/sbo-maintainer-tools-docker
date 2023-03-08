@@ -53,7 +53,7 @@ export PKGTYPE=txz
 
   wget "$DOWNLOAD"
   printf "%s\t%s\n" "$MD5SUM" "$(basename "$DOWNLOAD")" | md5sum --check --quiet
-  PKGTYPE=txz bash sbo-maintainer-tools.SlackBuild
+  bash sbo-maintainer-tools.SlackBuild
 )
 
 rm -rf SlackBuildsOrg-slackbuilds-*
