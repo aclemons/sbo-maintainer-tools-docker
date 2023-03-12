@@ -64,7 +64,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     libXdmcp \
     libXext \
     libXt \
-    libwep \
+    libwebp \
     libxcb \
     libxml2 \
     libzip \
