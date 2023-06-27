@@ -1,5 +1,6 @@
+---
 name: Update Docker Hub Description
-on:
+"on":
   push:
     branches:
       - master
@@ -8,14 +9,14 @@ on:
       - .github/workflows/dockerhub-description.yml
 jobs:
   dockerHubDescription:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.5.3
 
-    - name: Docker Hub Description
-      uses: peter-evans/dockerhub-description@v3.4.2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: aclemons/sbo-maintainer-tools
-        short-description: ${{ github.event.repository.description }}
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3.4.2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: aclemons/sbo-maintainer-tools
+          short-description: ${{ github.event.repository.description }}
