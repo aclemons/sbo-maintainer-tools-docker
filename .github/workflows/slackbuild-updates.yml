@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.5.3
 
       - name: Update the version of sbo-maintainer-tools packaged.
         run: |
@@ -29,7 +29,7 @@ jobs:
           rm -rf SlackBuildsOrg-slackbuilds-*
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5.0.2
         with:
             commit-message: "Update sbo-maintainer-tools to ${{ env.NEXT_VERSION }}"
             title: "Update sbo-maintainer-tools to ${{ env.NEXT_VERSION }}"
