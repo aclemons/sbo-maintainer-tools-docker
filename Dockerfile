@@ -10,7 +10,7 @@ FROM ghcr.io/aclemons/slackware:15.0@sha256:bfead2e71b801bdf9f97e3430d5f754d43a3
 COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
-FROM ghcr.io/aclemons/slackware:current@sha256:22834314c2c708fb5fdb1d7078b9dc5ab671e2d269ca910e997ee994dda5c181 as build-sbo-maintainer-tools-arm64
+FROM ghcr.io/aclemons/slackware:current@sha256:b34d82258d494ffbb6bd9446fd11afdb4faa8a71d8b2b5fe530b446561313d9c as build-sbo-maintainer-tools-arm64
 COPY build_sbo-maintainer-tools.sh /
 RUN bash /build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
@@ -29,7 +29,7 @@ FROM ghcr.io/aclemons/slackware:15.0@sha256:bfead2e71b801bdf9f97e3430d5f754d43a3
 COPY --from=build-sbo-maintainer-tools-arm /tmp/* /tmp
 RUN installpkg /tmp/*.txz && rm -rf /tmp/*.txz
 
-FROM ghcr.io/aclemons/slackware:current@sha256:22834314c2c708fb5fdb1d7078b9dc5ab671e2d269ca910e997ee994dda5c181 as sbo-maintainer-tools-arm64
+FROM ghcr.io/aclemons/slackware:current@sha256:b34d82258d494ffbb6bd9446fd11afdb4faa8a71d8b2b5fe530b446561313d9c as sbo-maintainer-tools-arm64
 # hadolint ignore=DL3006
 COPY --from=build-sbo-maintainer-tools-arm64 /tmp/* /tmp
 RUN installpkg /tmp/*.txz && rm -rf /tmp/*.txz
