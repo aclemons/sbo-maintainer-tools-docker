@@ -13,7 +13,7 @@ env:
   SBO_MAINTAINER_TOOLS_VERSION: 0.8.2
 
 jobs:
-  docker:
+  docker-current:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
@@ -57,6 +57,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           context: .
-          file: Dockerfile
+          file: Dockerfile.current
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
