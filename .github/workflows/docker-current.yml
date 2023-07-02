@@ -1,12 +1,12 @@
 ---
-name: Docker build 15.0
+name: Docker build current
 
 "on":
   push:
     branches:
       - 'master'
     paths:
-      - 'Dockerfile'
+      - 'Dockerfile.current'
       - 'build_sbo-maintainer-tools.sh'
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
@@ -46,17 +46,14 @@ jobs:
             ${{ env.REGISTRY_IMAGE }}
             ghcr.io/${{ env.REGISTRY_IMAGE }}
           tags: |
-            type=raw,value=latest
-            type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}
-            type=raw,value=latest-15.0
-            type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}-15.0
+            type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}-current
 
       - name: Build and push
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825 # v4.1.1
         with:
           pull: true
           push: true
-          platforms: linux/386,linux/amd64,linux/arm/v7
+          platforms: linux/386,linux/amd64,linux/arm64/v8
           cache-from: type=gha
           cache-to: type=gha,mode=max
           context: .
