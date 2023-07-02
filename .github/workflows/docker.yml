@@ -5,10 +5,9 @@ name: Docker build
   push:
     branches:
       - 'master'
-  schedule:
-    - cron: '0 5 * * *'
-  workflow_dispatch:
-
+    paths:
+      - 'Dockerfile'
+      - 'build_sbo-maintainer-tools.sh'
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
   SBO_MAINTAINER_TOOLS_VERSION: 0.8.2
