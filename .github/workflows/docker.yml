@@ -9,6 +9,10 @@ name: Docker build
     - cron: '0 5 * * *'
   workflow_dispatch:
 
+env:
+  REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
+  SBO_MAINTAINER_TOOLS_VERSION: 0.8.2
+
 jobs:
   docker:
     runs-on: ubuntu-22.04
@@ -35,6 +39,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175 # v4.6.0
+        with:
+          images: |
+            ${{ env.REGISTRY_IMAGE }}
+            ghcr.io/${{ env.REGISTRY_IMAGE }}
+          tags: |
+            type=raw,value=latest
+            type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}
+
       - name: Build and push
         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825 # v4.1.1
         with:
@@ -45,6 +60,5 @@ jobs:
           cache-to: type=gha,mode=max
           context: .
           file: Dockerfile
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/sbo-maintainer-tools:latest
-            aclemons/sbo-maintainer-tools:latest
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}

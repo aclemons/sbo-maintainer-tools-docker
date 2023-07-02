@@ -25,6 +25,8 @@ jobs:
             sed -i "s/MD5SUM=.*$/MD5SUM=$MD5SUM/" $CWD/build_sbo-maintainer-tools.sh
             sed -i "s,DOWNLOAD=.*$,DOWNLOAD=$DOWNLOAD," $CWD/build_sbo-maintainer-tools.sh
 
+            sed -i "s/SBO_MAINTAINER_TOOLS_VERSION: .*$/SBO_MAINTAINER_TOOLS_VERSION: $VERSION/"  $CWD/.github/workflows/docker.yml
+
             printf 'NEXT_VERSION=%s\n' "$VERSION" >> $GITHUB_ENV
           )
           rm -rf SlackBuildsOrg-slackbuilds-*
