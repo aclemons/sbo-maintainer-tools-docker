@@ -2,6 +2,7 @@
 name: Docker build current
 
 "on":
+  workflow_dispatch: ~
   push:
     branches:
       - 'master'
@@ -15,13 +16,18 @@ concurrency:
 
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
-  SBO_MAINTAINER_TOOLS_VERSION: 0.8.2
 
 jobs:
   docker-current:
     runs-on: ubuntu-22.04
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+
+      - name: Configure sbo-maintainer-tools version
+        run: |
+          printf 'SBO_MAINTAINER_TOOLS_VERSION=%s\n' "$(cat .sbo-maintainer-tools-version)" >> "$GITHUB_ENV"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # v2.2.0
