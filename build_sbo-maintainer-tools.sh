@@ -39,11 +39,11 @@ c_rehash
 
 rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 
-# renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds
+# renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds versioning=loose
 SBO_RELEASE_VERSION="15.0-20230702.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
-# renovate: datasource=slackbuilds depName=sbo-maintainer-tools
+# renovate: datasource=repology depName=slackbuilds/sbo-maintainer-tools
 SBO_MAINTAINER_TOOLS_VERSION="0.8.2"
 
 export TAG=_aclemons

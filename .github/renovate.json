@@ -14,7 +14,7 @@
                 "^build_sbo-maintainer-tools.sh"
             ],
             "matchStrings": [
-                "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=\"(?<currentValue>.*)\"\\s"
+                "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=\"(?<currentValue>.*)\""
             ],
             "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
         },
