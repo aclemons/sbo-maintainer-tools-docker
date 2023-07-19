@@ -27,7 +27,7 @@ jobs:
 
       - name: Configure sbo-maintainer-tools version
         run: |
-          printf 'SBO_MAINTAINER_TOOLS_VERSION=%s\n' "$(cat .sbo-maintainer-tools-version)" >> "$GITHUB_ENV"
+          grep ^SBO_MAINTAINER_TOOLS_VERSION build_sbo-maintainer-tools.sh  | sed 's/"//g' >> "$GITHUB_ENV"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # v2.2.0

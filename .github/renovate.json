@@ -20,16 +20,6 @@
         },
         {
             "fileMatch": [
-                "^.sbo-maintainer-tools-version"
-            ],
-            "matchStrings": [
-                "(?<currentValue>.*?)"
-            ],
-            "depNameTemplate": "sbo-maintainer-tools",
-            "datasourceTemplate": "slackbuilds"
-        },
-        {
-            "fileMatch": [
                 "^(workflow-templates|\\.github\\/workflows)\\/[^/]+\\.[Yy][Aa]?[Mm][Ll]$",
                 "(^|\\/)action\\.[Yy][Aa]?[Mm][Ll]$"
             ],
