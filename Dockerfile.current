@@ -43,6 +43,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     libXrender \
     libXt \
     libglvnd \
+    librsvg \
     libsrvg \
     libwebp \
     libxcb \
