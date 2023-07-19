@@ -39,7 +39,7 @@ c_rehash
 
 rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 
-wget -O - https://github.com/SlackBuildsOrg/slackbuilds/tarball/master | tar xz
+wget -O - https://github.com/SlackBuildsOrg/slackbuilds/tarball/15.0-20230715.1 | tar xz
 
 export TAG=_aclemons
 export VERSION=0.9.0
