@@ -11,6 +11,25 @@
     "regexManagers": [
         {
             "fileMatch": [
+                "^build_sbo-maintainer-tools.sh"
+            ],
+            "matchStrings": [
+                "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=\"(?<currentValue>.*)\"\\s"
+            ],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        },
+        {
+            "fileMatch": [
+                "^.sbo-maintainer-tools-version"
+            ],
+            "matchStrings": [
+                "(?<currentValue>.*?)"
+            ],
+            "depNameTemplate": "sbo-maintainer-tools",
+            "datasourceTemplate": "slackbuilds"
+        },
+        {
+            "fileMatch": [
                 "^(workflow-templates|\\.github\\/workflows)\\/[^/]+\\.[Yy][Aa]?[Mm][Ll]$",
                 "(^|\\/)action\\.[Yy][Aa]?[Mm][Ll]$"
             ],

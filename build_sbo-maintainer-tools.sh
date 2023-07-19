@@ -39,11 +39,16 @@ c_rehash
 
 rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 
-wget -O - https://github.com/SlackBuildsOrg/slackbuilds/tarball/15.0-20230702.1 | tar xz
+# renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds
+SBO_RELEASE_VERSION="15.0-20230702.1"
+wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
+
+# renovate: datasource=slackbuilds depName=sbo-maintainer-tools
+SBO_MAINTAINER_TOOLS_VERSION="0.8.2"
 
 export TAG=_aclemons
-export VERSION=0.8.2
-export DOWNLOAD=https://slackware.uk/~urchlay/src/sbo-maintainer-tools-0.8.2.tar.gz
+export VERSION="$SBO_MAINTAINER_TOOLS_VERSION"
+export DOWNLOAD="https://slackware.uk/~urchlay/src/sbo-maintainer-tools-$VERSION.tar.gz"
 export MD5SUM=3f9a77197b5c68f651d604b12dff0203
 export PKGTYPE=txz
 (
