@@ -40,15 +40,15 @@ c_rehash
 rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 
 # renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds versioning=loose
-SBO_RELEASE_VERSION="15.0-20230702.1"
+SBO_RELEASE_VERSION="15.0-20230715.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
-SBO_MAINTAINER_TOOLS_VERSION="0.8.2"
+SBO_MAINTAINER_TOOLS_VERSION="0.9.0"
 
 export TAG=_aclemons
 export VERSION="$SBO_MAINTAINER_TOOLS_VERSION"
 export DOWNLOAD="https://slackware.uk/~urchlay/src/sbo-maintainer-tools-$VERSION.tar.gz"
-export MD5SUM=3f9a77197b5c68f651d604b12dff0203
+export MD5SUM="d3aaf7c555b761996a4325602660c1f3"
 export PKGTYPE=txz
 (
   cd SlackBuildsOrg-slackbuilds-*
