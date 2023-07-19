@@ -27,7 +27,7 @@ jobs:
             cd SlackBuildsOrg-slackbuilds-*/system/sbo-maintainer-tools
             . sbo-maintainer-tools.info
 
-            sed -i "s/^SBO_RELEASE_VERSION=.*$/SBO_RELEASE_VERSION=$VERSION/" $CWD/build_sbo-maintainer-tools.sh
+            sed -i "s/^SBO_MAINTAINER_TOOLS_VERSION=.*$/SBO_MAINTAINER_TOOLS_VERSION=$VERSION/" $CWD/build_sbo-maintainer-tools.sh
             sed -i "s/MD5SUM=.*$/MD5SUM=$MD5SUM/" $CWD/build_sbo-maintainer-tools.sh
           )
 
