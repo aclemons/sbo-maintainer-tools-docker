@@ -18,12 +18,16 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     if [ "$TARGETARCH" = "386" ] ; then archwrapper="linux32" ; fi && \
     $archwrapper slackpkg -default_answer=yes -batch=on install \
     brotli \
+    cairo \
     cyrus-sasl \
     desktop-file-utils \
     fftw \
     fontconfig \
     freetype \
+    fribidi \
+    gdk-pixbuf2 \
     git \
+    glib2 \
     glibc \
     gnutls \
     graphite2 \
@@ -36,7 +40,10 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     libXau \
     libXdmcp \
     libXext \
+    libXrender \
     libXt \
+    libglvnd \
+    libsrvg \
     libwebp \
     libxcb \
     libxml2 \
@@ -46,8 +53,10 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     nghttp2 \
     openjpeg \
     p11-kit \
+    pango \
     parallel \
     perl \
+    pixman \
     popper-data \
     poppler \
     sudo \
