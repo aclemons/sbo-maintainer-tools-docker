@@ -1,0 +1,39 @@
+---
+name: Pull request checks
+on: [pull_request]
+
+concurrency:
+  group: pr-check-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  update-dep:
+    permissions:
+      contents: write
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Update the version of sbo-maintainer-tools packaged.
+        run: |
+          CWD="$(pwd)"
+
+          SBO_TAG="$(grep ^SBO_RELEASE_VERSION build_sbo-maintainer-tools.sh | cut -d= -f2 | sed 's/"//g')"
+          wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_TAG" | tar xz
+          (
+            cd SlackBuildsOrg-slackbuilds-*/system/sbo-maintainer-tools
+            . sbo-maintainer-tools.info
+
+            sed -i "s/^SBO_RELEASE_VERSION=.*$/SBO_RELEASE_VERSION=$VERSION/" $CWD/build_sbo-maintainer-tools.sh
+            sed -i "s/MD5SUM=.*$/MD5SUM=$MD5SUM/" $CWD/build_sbo-maintainer-tools.sh
+          )
+
+          rm -rf SlackBuildsOrg-slackbuilds-*
+
+      - name: Push back updated version and md5sum.
+        uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
+        with:
+          commit_message: Update sbo-maintainer-tools version.

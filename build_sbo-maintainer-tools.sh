@@ -43,7 +43,6 @@ rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
 SBO_RELEASE_VERSION="15.0-20230702.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
-# renovate: datasource=repology depName=slackbuilds/sbo-maintainer-tools
 SBO_MAINTAINER_TOOLS_VERSION="0.8.2"
 
 export TAG=_aclemons
