@@ -28,7 +28,7 @@ jobs:
             sed -i "s/MD5SUM=.*$/MD5SUM=$MD5SUM/" $CWD/build_sbo-maintainer-tools.sh
             sed -i "s,DOWNLOAD=.*$,DOWNLOAD=$DOWNLOAD," $CWD/build_sbo-maintainer-tools.sh
 
-            printf '%s\n' "$VERSION" > .sbo-maintainer-tools-version
+            printf '%s\n' "$VERSION" > $CWD/.sbo-maintainer-tools-version
 
             printf 'NEXT_VERSION=%s\n' "$VERSION" >> $GITHUB_ENV
           )
