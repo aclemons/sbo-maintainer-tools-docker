@@ -37,7 +37,8 @@ fi
 
 c_rehash
 
-rm -rf /var/cache/packages/* && rm -rf /var/lib/slackpkg/* && \
+rm -rf /var/cache/packages/*
+rm -rf /var/lib/slackpkg/*
 
 # renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds versioning=loose
 SBO_RELEASE_VERSION="15.0-20230826.1"
