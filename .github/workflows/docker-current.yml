@@ -1,14 +1,14 @@
 ---
 name: Docker build current
 
-"on":
-  workflow_dispatch: ~
+on:
+  workflow_dispatch:
   push:
     branches:
-      - 'master'
+      - master
     paths:
-      - 'Dockerfile.current'
-      - 'build_sbo-maintainer-tools.sh'
+      - Dockerfile.current
+      - build_sbo-maintainer-tools.sh
 
 concurrency:
   group: docker-current-${{ github.head_ref || github.ref_name }}

@@ -1,14 +1,14 @@
 ---
 name: Docker build 15.0
 
-"on":
-  workflow_dispatch: ~
+on:
+  workflow_dispatch:
   push:
     branches:
-      - 'master'
+      - master
     paths:
-      - 'Dockerfile'
-      - 'build_sbo-maintainer-tools.sh'
+      - Dockerfile
+      - build_sbo-maintainer-tools.sh
 
 concurrency:
   group: docker-15.0-${{ github.head_ref || github.ref_name }}
