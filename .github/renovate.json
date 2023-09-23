@@ -15,5 +15,16 @@
     "enabled": true
   },
   "rangeStrategy": "pin",
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "^build_sbo-maintainer-tools.sh"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=\"(?<currentValue>.*)\""
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
   "timezone": "Asia/Tokyo"
 }
