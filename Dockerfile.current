@@ -61,4 +61,5 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     popper-data \
     poppler \
     sudo \
+    texinfo\
     && rm -rf /var/cache/packages/* && find /var/lib/slackpkg/ -mindepth 1 \! -name current -print0 | xargs -0 rm -rf
