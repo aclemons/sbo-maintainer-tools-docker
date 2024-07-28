@@ -61,5 +61,4 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     poppler \
     sudo \
     texinfo \
-    && rm /root/.gnupg/public-keys.d/pubring.db.lock \
     && rm -rf /var/cache/packages/* && find /var/lib/slackpkg/ -mindepth 1 \! -name current -print0 | xargs -0 rm -rf
