@@ -48,7 +48,7 @@ SBO_MAINTAINER_TOOLS_VERSION="0.9.1"
 
 export TAG=_aclemons
 export VERSION="$SBO_MAINTAINER_TOOLS_VERSION"
-export DOWNLOAD="https://slackware.uk/~urchlay/src/sbo-maintainer-tools-$VERSION.tar.gz"
+export DOWNLOAD="https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/snapshot/sbo-maintainer-tools-$VERSION.tar.gz"
 export MD5SUM="e4c0e3653d9e0d08a40509a09091a954"
 export PKGTYPE=txz
 (
