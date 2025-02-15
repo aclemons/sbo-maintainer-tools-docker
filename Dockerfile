@@ -17,6 +17,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     if [ "$TARGETARCH" = "386" ] ; then archwrapper="linux32" ; fi && \
     $archwrapper slackpkg -default_answer=yes -batch=on install \
     brotli \
+    binutils \
     cairo \
     cyrus-sasl \
     desktop-file-utils \
