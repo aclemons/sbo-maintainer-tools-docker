@@ -41,7 +41,7 @@ rm -rf /var/cache/packages/*
 rm -rf /var/lib/slackpkg/*
 
 # renovate: datasource=github-tags depName=SlackBuildsOrg/slackbuilds versioning=loose
-SBO_RELEASE_VERSION="15.0-20250823.1"
+SBO_RELEASE_VERSION="15.0-20250906.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
 SBO_MAINTAINER_TOOLS_VERSION="0.9.3"
