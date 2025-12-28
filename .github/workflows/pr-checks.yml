@@ -17,6 +17,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           show-progress: false
+          persist-credentials: false
 
       - name: Update the version of sbo-maintainer-tools packaged.
         run: |
