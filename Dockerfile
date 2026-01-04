@@ -22,6 +22,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     cyrus-sasl \
     desktop-file-utils \
     fftw \
+    flex \
     fontconfig \
     freetype \
     fribidi \
