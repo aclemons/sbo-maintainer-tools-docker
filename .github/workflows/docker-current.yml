@@ -15,8 +15,6 @@ concurrency:
 
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
-  # renovate: datasource=docker depName=tonistiigi/binfmt
-  BINFMT_IMAGE_VERSION: tonistiigi/binfmt:qemu-v9.2.0@sha256:ea2f0dd74e74f101df59f9a6b31d0960994060c7982a921cbceecee0f1841125
 
 jobs:
   docker-current:
@@ -34,10 +32,15 @@ jobs:
         run: |
           grep ^SBO_MAINTAINER_TOOLS_VERSION build_sbo-maintainer-tools.sh  | sed 's/"//g' >> "$GITHUB_ENV"
 
+      - name: Configure binfmt version
+        run: |
+          BINFMT_IMAGE_VERSION="$(awk '/^FROM / {print $2}' binfmt/Dockerfile)"
+          printf "BINFMT_IMAGE_VERSION=%s\n" "$BINFMT_IMAGE_VERSION" >> "$GITHUB_ENV"
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
         with:
-          image: ${{ env.BINFMT_IMAGE }}
+          image: ${{ env.BINFMT_IMAGE_VERSION }}
 
       - name: Set up Docker Buildx
         id: buildx
