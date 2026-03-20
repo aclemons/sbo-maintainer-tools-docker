@@ -16,7 +16,7 @@ concurrency:
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
   # renovate: datasource=docker depName=tonistiigi/binfmt versioning=loose
-  BINFMT_IMAGE_VERSION: qemu-v9.2.0@sha256:ea2f0dd74e74f101df59f9a6b31d0960994060c7982a921cbceecee0f1841125
+  BINFMT_IMAGE: qemu-v9.2.0@sha256:ea2f0dd74e74f101df59f9a6b31d0960994060c7982a921cbceecee0f1841125
 
 jobs:
   docker-current:
@@ -37,7 +37,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
         with:
-          image: tonistiigi/binfmt:${{ env.BINFMT_IMAGE_VERSION }}
+          image: tonistiigi/binfmt:${{ env.BINFMT_IMAGE }}
 
       - name: Set up Docker Buildx
         id: buildx
