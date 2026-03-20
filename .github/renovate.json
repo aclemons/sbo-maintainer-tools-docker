@@ -28,7 +28,7 @@
       "matchPackageNames": [
         "tonistiigi/binfmt"
       ],
-      "versioning": "loose"
+      "versioning": "regex:^qemu-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:-(?<build>\\d+))?$"
     }
   ],
   "pre-commit": {
