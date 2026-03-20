@@ -10,19 +10,6 @@
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=\"(?<currentValue>.*)\""
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "datasourceTemplate": "docker",
-      "managerFilePatterns": [
-        "/(^|/)(workflow-templates|\\.(?:github|gitea|forgejo)/(?:workflows|actions))/.+\\.ya?ml$/",
-        "/(^|/)action\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "BINFMT_IMAGE\\s*:\\s*[\"']?(?<depName>tonistiigi/binfmt):(?<currentValue>.+?)@(?<currentDigest>sha256:[a-f0-9]+)[\"']?\\s"
-      ],
-      "matchTag": "^qemu-.*$",
-      "versioningTemplate": "loose"
     }
   ],
   "extends": [
