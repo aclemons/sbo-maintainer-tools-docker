@@ -23,6 +23,14 @@
     "schedule:earlyMondays"
   ],
   "ignoreTests": false,
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "tonistiigi/binfmt"
+      ],
+      "versioning": "loose"
+    }
+  ],
   "pre-commit": {
     "enabled": true
   },
