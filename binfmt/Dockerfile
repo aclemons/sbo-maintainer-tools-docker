@@ -1,1 +1,1 @@
-FROM tonistiigi/binfmt:qemu-v9.2.2-52@sha256:1b804311fe87047a4c96d38b4b3ef6f62fca8cd125265917a9e3dc3c996c39e6
+FROM tonistiigi/binfmt:qemu-v10.2.1-65@sha256:d3b963f787999e6c0219a48dba02978769286ff61a5f4d26245cb6a6e5567ea3
