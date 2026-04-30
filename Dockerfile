@@ -60,6 +60,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     parallel \
     perl \
     pixman \
+    pkg-config \
     popper-data \
     poppler \
     sudo \
