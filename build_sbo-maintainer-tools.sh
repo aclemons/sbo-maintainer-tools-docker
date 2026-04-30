@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2022-2024 Andrew Clemons, Tokyo Japan
+# Copyright 2022-2026 Andrew Clemons, Tokyo Japan
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -44,12 +44,12 @@ rm -rf /var/lib/slackpkg/*
 SBO_RELEASE_VERSION="15.0-20260425.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
-SBO_MAINTAINER_TOOLS_VERSION="0.9.3"
+SBO_MAINTAINER_TOOLS_VERSION="0.9.4"
 
 export TAG=_aclemons
 export VERSION="$SBO_MAINTAINER_TOOLS_VERSION"
 export DOWNLOAD="https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/snapshot/sbo-maintainer-tools-$VERSION.tar.gz"
-export MD5SUM="f22b199becb11b1ef24aaefdb11d8abb"
+export MD5SUM="c941ccde7bd53d1987678f1bdd5a7430"
 export PKGTYPE=txz
 (
   cd SlackBuildsOrg-slackbuilds-*
