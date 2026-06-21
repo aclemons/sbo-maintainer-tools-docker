@@ -14,6 +14,7 @@ jobs:
   codeberg:
     name: Mirror to Codeberg
     runs-on: ubuntu-slim
+    timeout-minutes: 10
     environment: codeberg-mirror
     permissions:
       contents: read
@@ -30,6 +31,31 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.repository }}
         run: |
-          git remote add mirror "https://$REPO_OWNER:$CODEBERG_TOKEN@codeberg.org/$REPO.git"
-          git push --tags --force --prune mirror "refs/remotes/origin/*:refs/heads/*"
+          set -euo pipefail
+          max_attempts=3
+
+          if [[ -z "$CODEBERG_TOKEN" ]]; then
+            printf "CODEBERG_TOKEN is not set\n"
+            exit 1
+          fi
+
+          git remote add mirror "https://codeberg.org/$REPO.git"
+
+          # Use --force --prune for an exact mirror
+          for attempt in $(seq 1 "$max_attempts"); do
+            ret=0
+            # shellcheck disable=SC2016
+            git -c credential.helper='!f() { printf "%s\n" "username=$REPO_OWNER"; printf "%s\n" "password=$CODEBERG_TOKEN"; }; f' push --tags --force --prune mirror "refs/remotes/origin/*:refs/heads/*" || ret=$?
+            if [[ $ret -eq 0 ]]; then
+              break
+            fi
+
+            if [[ "$attempt" -eq "$max_attempts" ]]; then
+              printf "Mirror push failed after %s attempts\n" "$max_attempts"
+              exit $ret
+            fi
+
+            printf "Mirror push attempt %s failed; retrying\n" "$attempt"
+          done
+
           git remote remove mirror
