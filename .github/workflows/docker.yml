@@ -54,6 +54,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Configure immutable tag fields
+        run: |
+          BUILD_DATE="$(date -u +%Y%m%d)"
+          BUILD_RUN="$(printf '%06d' "${GITHUB_RUN_NUMBER}")"
+          BUILD_SHA="${GITHUB_SHA::12}"
+          printf "IMMUTABLE_TAG=%s-15.0-%s-%s-sha%s\n" \
+            "$SBO_MAINTAINER_TOOLS_VERSION" \
+            "$BUILD_DATE" \
+            "$BUILD_RUN" \
+            "$BUILD_SHA" >> "$GITHUB_ENV"
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@80c7e94dd9b9319bd5eb7a0e0fe9291e23a2a2e9 # v6.1.0
@@ -65,6 +76,7 @@ jobs:
             type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}
             type=raw,value=latest-15.0
             type=raw,value=${{ env.SBO_MAINTAINER_TOOLS_VERSION }}-15.0
+            type=raw,value=${{ env.IMMUTABLE_TAG }}
 
       - name: Build and push
         uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf # v7.2.0
