@@ -15,7 +15,9 @@ jobs:
     name: Mirror to Codeberg
     runs-on: ubuntu-slim
     timeout-minutes: 10
-    environment: codeberg-mirror
+    environment:
+      name: codeberg-mirror
+      deployment: false
     permissions:
       contents: read
     steps:
