@@ -1,11 +1,11 @@
-FROM aclemons/slackware:current@sha256:43bcc2b33b8bc3415c0d127d7d90b9b7b8bce11eb6c6fda2ab4723c52790075e AS build-sbo-maintainer-tools
+FROM aclemons/slackware:current@sha256:03eaacfa40e8b5367366ac1199e05258a518bd9742601e210ff5108fb26c0375 AS build-sbo-maintainer-tools
 COPY build_sbo-maintainer-tools.sh /
 ARG TARGETARCH
 RUN archwrapper="" && \
     if [ "$TARGETARCH" = "386" ] ; then archwrapper="linux32" ; fi && \
     $archwrapper ./build_sbo-maintainer-tools.sh && rm /build_sbo-maintainer-tools.sh
 
-FROM aclemons/slackware:current@sha256:43bcc2b33b8bc3415c0d127d7d90b9b7b8bce11eb6c6fda2ab4723c52790075e
+FROM aclemons/slackware:current@sha256:03eaacfa40e8b5367366ac1199e05258a518bd9742601e210ff5108fb26c0375
 RUN --mount=type=bind,from=build-sbo-maintainer-tools,source=/tmp,target=/pkgs \
     installpkg /pkgs/*.txz
 
