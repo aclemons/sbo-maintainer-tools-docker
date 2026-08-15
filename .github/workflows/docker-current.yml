@@ -16,7 +16,7 @@ concurrency:
 env:
   REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
   # renovate: datasource=github-releases depName=docker/buildx
-  BUILDX_VERSION: 'v0.36.1'
+  BUILDX_VERSION: "v0.36.1"
 
 jobs:
   docker-current:
