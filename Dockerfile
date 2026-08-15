@@ -21,6 +21,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     cairo \
     cyrus-sasl \
     desktop-file-utils \
+    elfutils \
     fftw \
     flex \
     fontconfig \
