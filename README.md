@@ -1,9 +1,21 @@
 ### sbo-maintainer-tools Docker Image
 
+### What is sbo-maintainer-tools?
+
+sbo-maintainer-tools is a set of "lint" tools to make life easier for
+SlackBuilds.org maintainers and admins.
+
+It is maintained by B. Watson:
+
+- Upstream project:
+  [https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/](https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/)
+
+They are packaged here in a docker image for ease of use.
+
 ### Quick reference
 
 - Maintained by:
-	[aclemons](https://github.com/aclemons)
+  [aclemons](https://github.com/aclemons)
 
 ### Supported tags and respective `Dockerfile` links
 
@@ -13,18 +25,14 @@
 ### Quick reference (cont.)
 
 - Where to file issues:
-	[https://github.com/aclemons/sbo-maintainer-tools-docker/issues](https://github.com/aclemons/sbo-maintainer-tools-docker/issues)
+  [https://github.com/aclemons/sbo-maintainer-tools-docker/issues](https://github.com/aclemons/sbo-maintainer-tools-docker/issues)
 - Source repository:
-	[https://github.com/aclemons/sbo-maintainer-tools-docker](https://github.com/aclemons/sbo-maintainer-tools-docker)
+  [https://github.com/aclemons/sbo-maintainer-tools-docker](https://github.com/aclemons/sbo-maintainer-tools-docker)
 - Upstream project:
-	[https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/](https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/)
+  [https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/](https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/)
 - Supported architectures:
-	- Slackware 15.0: amd64, armv7, i386
-	- Slackware current: amd64, arm64v8, i386
-
-### What is sbo-maintainer-tools?
-
-sbo-maintainer-tools is a set of helper tools for SlackBuilds.org maintainers, packaged here for running in a clean Slackware environment.
+  - Slackware 15.0: amd64, armv7, i386
+  - Slackware current: amd64, arm64v8, i386
 
 ### How to use
 
@@ -40,11 +48,11 @@ If you want to use Slackware -current, pull a `-current` tag instead, for exampl
 docker run --rm -it -v "$PWD:/mnt" aclemons/sbo-maintainer-tools:latest-current /bin/bash -l
 ```
 
-For i386 or ARM builds, select the platform explicitly with Docker, for example `--platform linux/386` or `--platform linux/arm/v7` when the chosen tag supports it.
+For i386 or ARM builds on a 64bit host, select the platform explicitly with Docker, for example `--platform linux/386` or `--platform linux/arm/v7` when the chosen tag supports it.
 
-`latest` and the unqualified `<version>` tag both track the Slackware 15.0 build.
+`latest` and the bare `<version>` tags follow Slackware stable (currently Slackware 15.0).
 
-The `-current` flavour is a rolling base. A tag such as `<version>-current` identifies the sbo-maintainer-tools version, but the underlying Slackware current image can still change over time as -current rolls.
+The `-current` flavour follows slackware -current. A tag like `<version>-current` is that version of sbo-maintainer-tools, packaged in a slackware -current container.
 
 ### Licence
 
