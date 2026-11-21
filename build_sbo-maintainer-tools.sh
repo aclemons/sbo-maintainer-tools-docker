@@ -44,12 +44,12 @@ rm -rf /var/lib/slackpkg/*
 SBO_RELEASE_VERSION="15.0-20261114.1"
 wget -O - "https://github.com/SlackBuildsOrg/slackbuilds/tarball/$SBO_RELEASE_VERSION" | tar xz
 
-SBO_MAINTAINER_TOOLS_VERSION="0.9.9"
+SBO_MAINTAINER_TOOLS_VERSION="0.9.10"
 
 export TAG=_aclemons
 export VERSION="$SBO_MAINTAINER_TOOLS_VERSION"
 export DOWNLOAD="https://slackware.uk/~urchlay/repos/sbo-maintainer-tools/snapshot/sbo-maintainer-tools-$VERSION.tar.gz"
-export MD5SUM="9476b816118b5a37f487c2aa0663d20e"
+export MD5SUM="9bf3d780c8d146a7beaaa81545b639eb"
 export PKGTYPE=txz
 (
   cd SlackBuildsOrg-slackbuilds-*
