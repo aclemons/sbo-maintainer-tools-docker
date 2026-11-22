@@ -48,6 +48,7 @@ RUN slackpkg -default_answer=yes -batch=on update && \
     libglvnd \
     librsvg \
     libsrvg \
+    libtasn1 \
     libwebp \
     libxcb \
     libxml2 \
