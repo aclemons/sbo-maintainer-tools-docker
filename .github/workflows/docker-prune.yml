@@ -1,0 +1,53 @@
+name: Docker Hub prune
+
+on:
+  schedule:
+    # Mondays 19:00 JST (cron is in UTC)
+    - cron: "0 10 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: The script will output only what would be deleted.
+        type: boolean
+        default: true
+      max-age-months:
+        description: Delete immutable tags built more than this many months ago
+        type: number
+        default: 6
+
+permissions: {}
+
+concurrency:
+  group: docker-prune
+  cancel-in-progress: false
+
+env:
+  REGISTRY_IMAGE: aclemons/sbo-maintainer-tools
+
+jobs:
+  prune:
+    runs-on: ubuntu-26.04
+    permissions: {}
+    environment:
+      name: dockerhub
+      deployment: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          show-progress: false
+          persist-credentials: false
+
+      - name: Prune old immutable tags
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DRY_RUN: ${{ inputs.dry-run || false }}
+          MAX_AGE_MONTHS: ${{ inputs.max-age-months || 6 }}
+        run: |
+          args=(--repo "$REGISTRY_IMAGE" --max-age-months "$MAX_AGE_MONTHS")
+
+          if [ "$DRY_RUN" != "true" ]; then
+            args+=(--execute)
+          fi
+
+          bash .github/scripts/prune_dockerhub.sh "${args[@]}"
